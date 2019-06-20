@@ -9,17 +9,17 @@ var num2= Math.floor(Math.random()*11+1)
 var num3= Math.floor(Math.random()*11+1)
 var num4= Math.floor(Math.random()*11+1)
 
-var userTotal = 0;
-var wins = 0;
-var losses = 0;
+var userTotal= 0;
+var wins= 0;
+var losses= 0;
 
 $('#numberWins').text(wins);
 $('#numberLosses').text(losses);
 
 function reset(){
-    Random=Math.floor(Math.random()*101+19);
-    console.log(Random)
-    $('#randomNumber').text(Random);
+    random=Math.floor(Math.random()*101+19);
+    console.log(random)
+    $('#randomNumber').text(random);
     num1= Math.floor(Math.random()*11+1);
     num2= Math.floor(Math.random()*11+1);
     num3= Math.floor(Math.random()*11+1);
@@ -37,59 +37,46 @@ function winner(){
 
 function loser() {
     alert ("You lose!");
-    lossess++;
-    $('#numberLosses').text(lossess);
-    reset ()
+    losses++;
+    $('#numberLosses').text(losses);
+    reset ();
 }
 
-
+function check(){
+  if (userTotal === random){
+    winner();
+  }
+  else if ( userTotal > random){
+    loser();
+  }  
+}
 
 $('#one').on ('click', function(){
     userTotal = userTotal + num1;
     console.log("New userTotal= " + userTotal);
     $('#finalTotal').text(userTotal); 
-          //sets win/lose conditions
-        if (userTotal == Random){
-          yay();
-        }
-        else if ( userTotal > Random){
-          loser();
-        }   
+          //sets win/lose conditions 
+  check() 
   })  
 
 $('#two').on ('click', function(){
     userTotal = userTotal + num2;
     console.log("New userTotal= " + userTotal);
     $('#finalTotal').text(userTotal); 
-        if (userTotal == Random){
-          winner();
-        }
-        else if ( userTotal > Random){
-          loser();
-        } 
+        check()
   })  
   $('#three').on ('click', function(){
     userTotal = userTotal + num3;
     console.log("New userTotal= " + userTotal);
     $('#finalTotal').text(userTotal);
 //sets win/lose conditions
-          if (userTotal == Random){
-          winner();
-        }
-        else if ( userTotal > Random){
-          loser();
-        } 
+          check()
   })  
   $('#four').on ('click', function(){
     userTotal = userTotal + num4;
     console.log("New userTotal= " + userTotal);
     $('#finalTotal').text(userTotal); 
       
-          if (userTotal == Random){
-          winner();
-        }
-        else if ( userTotal > Random){
-          loser();
-        }
+        check()
   });   
 }); 
